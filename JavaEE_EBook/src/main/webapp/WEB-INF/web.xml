@@ -17,14 +17,15 @@
   	<param-value>mysecret</param-value> <!-- cang phuc tap cang tot. hacker se kho hack -->
   </context-param>
   
+  <!-- handle error 400  -->
   <error-page>
   	<error-code>404</error-code>
   	<location>/error/404.jsp</location>
   </error-page>
-<!--   <error-page>
+	<error-page>
   	<error-code>500</error-code>
   	<location>/error/500.jsp</location>
-  </error-page> -->
+  </error-page>
   
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
