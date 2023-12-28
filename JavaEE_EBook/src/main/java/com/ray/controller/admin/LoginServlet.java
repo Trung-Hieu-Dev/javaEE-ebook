@@ -23,12 +23,18 @@ public class LoginServlet extends HttpServlet {
         userService = new UserService();
     }
 
-	
+    /*
+	 * manage LOGOUT
+	 * */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		// remove session attribute
+		request.getSession().removeAttribute("userEmail");
+		response.sendRedirect(request.getContextPath() + "/admin/login.jsp");
 	}
 
-	
+	/*
+	 * manage LOGIN
+	 * */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
