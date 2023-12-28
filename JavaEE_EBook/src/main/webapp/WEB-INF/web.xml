@@ -11,9 +11,10 @@
   	<param-value>http://localhost:8080</param-value>
   </context-param>
   
+  <!-- encript -->
   <context-param>
   	<param-name>salt</param-name>
-  	<param-value>mysecret</param-value>
+  	<param-value>mysecret</param-value> <!-- cang phuc tap cang tot. hacker se kho hack -->
   </context-param>
   
   <error-page>

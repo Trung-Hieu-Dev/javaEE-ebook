@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ray.service.UserService;
+import com.ray.utilities.CryptoUtil;
 
 
 @WebServlet("/admin/login")
@@ -39,7 +40,11 @@ public class LoginServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 
-		String errorMessage = userService.checkLogin(email, password);
+		// do login. if fail return error massage
+		String errorMessage = userService.checkLogin(
+					email, 
+					CryptoUtil.hashPassword(password, getServletContext().getInitParameter("salt"))
+				);
 
 		// if login fail, forward to login page
 		if (errorMessage != null) {

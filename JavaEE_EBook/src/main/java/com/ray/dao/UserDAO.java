@@ -46,7 +46,7 @@ public class UserDAO extends JpaDAO<User> {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("email", email);
 		
-		List<User> userList =super.getNamedEqueryWithParams("User.HQL.findByEmail", params);
+		List<User> userList = super.getNamedEqueryWithParams("User.HQL.findByEmail", params);
 		
 		if (userList != null && userList.size() > 0) {
 			return userList.get(0);
@@ -75,7 +75,7 @@ public class UserDAO extends JpaDAO<User> {
 		params.put("email", user.getEmail());
 		params.put("userId", user.getUserId());
 		
-		List<User> userList =super.getNamedEqueryWithParams("User.HQL.findByEmailAndNotUserId", params);
+		List<User> userList = super.getNamedEqueryWithParams("User.HQL.findByEmailAndNotUserId", params);
 		
 		if (userList != null && userList.size() > 0) {
 			return userList.get(0);
@@ -90,7 +90,7 @@ public class UserDAO extends JpaDAO<User> {
 		params.put("email", email);
 		params.put("password", password);
 
-		List<User> userList =super.getNamedEqueryWithParams("User.HQL.checkLogin", params);
+		List<User> userList = super.getNamedEqueryWithParams("User.HQL.checkLogin", params);
 
 		if (userList != null && userList.size() == 1) {
 			return true;
