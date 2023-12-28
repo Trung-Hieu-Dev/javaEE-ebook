@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import com.ray.dao.UserDAO;
 import com.ray.entity.User;
 import com.ray.service.UserService;
+import com.ray.utilities.CryptoUtil;
 
 /// http://localhost:8080/ebook/admin/manage_user
 @WebServlet("/admin/manage_user")
@@ -115,7 +116,10 @@ public class UserController extends HttpServlet {
 		String fullName = request.getParameter("fullName");
 		String password = request.getParameter("password");
 		
-		User newUser = new User(email, fullName, password);
+		// encrypt password
+		String hashPassword = CryptoUtil.hashPassword(password, getServletContext().getInitParameter("salt"));
+		
+		User newUser = new User(email, fullName, hashPassword);
 //		this.userDAO.create(newUser);
 		String errorMessage = userService.createUser(newUser);
 		
@@ -137,7 +141,15 @@ public class UserController extends HttpServlet {
 		String fullName = request.getParameter("fullName");
 		String password = request.getParameter("password");
 		
-		User userToUpdate = new User(userId, email, fullName, password);
+		User userToUpdate = userService.getUserById(userId);
+		userToUpdate.setEmail(email);
+		userToUpdate.setFullName(fullName);
+		userToUpdate.setPassword(
+				password.equals(userToUpdate.getPassword())
+					? password
+					: CryptoUtil.hashPassword(password, getServletContext().getInitParameter("salt"))
+		);
+		
 		String errorMessage = this.userService.update(userToUpdate);
 		
 		if (errorMessage != null) {
