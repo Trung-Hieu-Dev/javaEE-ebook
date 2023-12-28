@@ -1,10 +1,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix = "fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 
 <div class="d-flex flex-column p-3 float-start h-100" style="width:280px;">	
 	<ul class="nav nav-pills mb-auto flex-column">
 		<c:forEach items="${categoryList}" var="category" varStatus="status">
+		
 			<li class="nav-item mb-3">
+				
 				<a href="#" class="nav-link d-flex align-items-center link-dark">
 					<c:choose>
 						<c:when test="${fn:toLowerCase(category.name) == 'comic' }">
@@ -26,11 +28,16 @@
 					
 					<c:out value="${category.name }" />
 				</a>
+				
 			</li>
 			
 			<c:if test="${status.last }">
 				<hr>
 			</c:if>
+		
 		</c:forEach>
+		
+		
 	</ul>
+
 </div>

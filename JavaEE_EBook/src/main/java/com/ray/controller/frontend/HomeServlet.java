@@ -17,8 +17,7 @@ import com.ray.service.CategoryService;
 @WebServlet("")
 public class HomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private CategoryService categoryService;
-       
+    private CategoryService categoryService;
 
     public HomeServlet() {
         super();

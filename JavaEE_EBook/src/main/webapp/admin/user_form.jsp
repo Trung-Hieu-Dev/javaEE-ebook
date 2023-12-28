@@ -15,19 +15,21 @@
 	
 	
 	<div class="container py-5">
-		<c:if test="${theUser == null }">
-			<c:url var="actionLink" value="manage_user">
-				<c:param name="command" value="INSERT" />
-			</c:url>
-			<h1 class="text-center mb-4">Create new user</h1>
-		</c:if>
-		
-		<c:if test="${theUser != null }">
-			<c:url var="actionLink" value="manage_user">
-				<c:param name="command" value="UPDATE" />
-			</c:url>
-			<h1 class="text-center mb-4">Update user</h1>
-		</c:if>
+		<c:choose>
+			<c:when test="${ theUser != null && not empty theUser.userId }">
+				<c:url var="actionLink" value="manage_user">
+					<c:param name="command" value="UPDATE" />
+				</c:url>
+				<h1 class="text-center mb-4">Update user</h1>
+			</c:when>
+			
+			<c:otherwise>
+				<c:url var="actionLink" value="manage_user">
+					<c:param name="command" value="INSERT" />
+				</c:url>
+				<h1 class="text-center mb-4">Create new user</h1>
+			</c:otherwise>
+		</c:choose>
 		
 		<hr class="mx-auto" style="width:50%;">
 		
@@ -65,20 +67,20 @@
 	</div>
 
 	
-<div class="footer mt-auto py-3">
-	<div class="row text-center">
-		<h5>Copyright (C) 2022 by Ray, Ltd</h5>
-	</div>
-	<div class="row">
-		<div class="d-flex align-items-center justify-content-center">
-			<a href="#">About us</a>
-			<span class="mx-3"> | </span>
-			<a href="#">Contact us</a>
-			<span class="mx-3"> | </span>
-			<a href="#">Privacy Policy</a>
+	<div class="footer mt-auto py-3">
+		<div class="row text-center">
+			<h5>Copyright (C) 2022 by Ray, Ltd</h5>
+		</div>
+		<div class="row">
+			<div class="d-flex align-items-center justify-content-center">
+				<a href="#">About us</a>
+				<span class="mx-3"> | </span>
+				<a href="#">Contact us</a>
+				<span class="mx-3"> | </span>
+				<a href="#">Privacy Policy</a>
+			</div>
 		</div>
 	</div>
-</div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 

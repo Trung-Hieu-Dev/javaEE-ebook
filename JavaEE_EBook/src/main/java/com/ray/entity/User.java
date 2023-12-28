@@ -13,9 +13,22 @@ import javax.persistence.Table;
 @Entity
 @Table(name="users")
 @NamedQueries({
-	@NamedQuery(name="User.HQL.findByEmail", query = "SELECT u FROM User u where u.email = :email"),
-	@NamedQuery(name="User.HQL.getUserById", query = "SELECT u FROM User u where u.userId = :userId"),
-	@NamedQuery(name="User.HQL.findByEmailAndNotUserId", query = "SELECT u FROM User u where u.email = :email and u.userId != :userId")
+	// for getting user by email
+	@NamedQuery(name="User.HQL.findByEmail", 
+			query = "SELECT u FROM User u where u.email = :email"),
+	
+	// for get user by userID
+	@NamedQuery(name="User.HQL.getUserById", 
+			query = "SELECT u FROM User u where u.userId = :userId"),
+	
+	// for login existed email
+	@NamedQuery(name="User.HQL.findByEmailAndNotUserId", 
+			query = "SELECT u FROM User u where u.email = :email and u.userId != :userId"),
+	
+	// for admin login
+	@NamedQuery(name="User.HQL.checkLogin", 
+			query = "SELECT u FROM User u where u.email = :email and u.password = :password")
+	
 })
 public class User {
 	
