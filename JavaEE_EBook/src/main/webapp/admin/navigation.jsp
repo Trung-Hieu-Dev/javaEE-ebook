@@ -26,7 +26,7 @@
 		<span class="mx-3"> | </span>
 		<a href="manage_category?command=LIST" class="fw-bold">Categories</a>
 		<span class="mx-3"> | </span>
-		<a href="#" class="fw-bold">Books</a>
+		<a href="<c:url value="/admin/manage_product?command=NEW" />" class="fw-bold">Books</a>
 		<span class="mx-3"> | </span>
 		<a href="#" class="fw-bold">Customers</a>
 		<span class="mx-3"> | </span>
