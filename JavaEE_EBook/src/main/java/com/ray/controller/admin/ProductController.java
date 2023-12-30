@@ -119,6 +119,10 @@ public class ProductController extends HttpServlet {
 
 		Product productToUpdate = productService.getById(theProductId);
 		session.setAttribute("theProduct", productToUpdate);
+		
+		// get category list
+		List<Category> categoryList = categoryService.listCategory();
+		request.getSession().setAttribute("categoryList", categoryList);
 
 		response.sendRedirect("product_form.jsp");
 	}
