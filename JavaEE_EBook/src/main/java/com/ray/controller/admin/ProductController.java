@@ -161,7 +161,17 @@ public class ProductController extends HttpServlet {
 			newProduct.setImage(imageBytes);
 		}
 
-		this.productService.create(newProduct);
+		String errorMessage = this.productService.create(newProduct);
+		
+		// Validate if insert fail
+		if (errorMessage != null) {
+			request.setAttribute("message", errorMessage);
+			request.setAttribute("theProduct", newProduct);
+			RequestDispatcher rd = request.getRequestDispatcher("product_form.jsp");
+			rd.forward(request, response);
+			return;
+		}
+		
 
 		/// http://localhost:8080/ebook/admin/
 		response.sendRedirect(request.getContextPath() + "/admin/");
